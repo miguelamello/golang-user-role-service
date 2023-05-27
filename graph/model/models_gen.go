@@ -2,8 +2,49 @@
 
 package model
 
+type Domain struct {
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+type NewUser struct {
+	Name        string   `json:"name"`
+	Email       string   `json:"email"`
+	Pwdhash     string   `json:"pwdhash"`
+	Role        string   `json:"role"`
+	Domain      string   `json:"domain"`
+	Permissions []string `json:"permissions"`
+}
+
+type Permission struct {
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+type Role struct {
+	ID          string        `json:"id"`
+	Name        string        `json:"name"`
+	Description string        `json:"description"`
+	Permissions []*Permission `json:"permissions"`
+}
+
+type UpdateUser struct {
+	Name        string   `json:"name"`
+	Email       string   `json:"email"`
+	Pwdhash     string   `json:"pwdhash"`
+	Role        string   `json:"role"`
+	Domain      string   `json:"domain"`
+	Permissions []string `json:"permissions"`
+}
+
 type User struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
+	ID          string        `json:"id"`
+	Name        string        `json:"name"`
+	Email       string        `json:"email"`
+	Pwdhash     string        `json:"pwdhash"`
+	Role        *Role         `json:"role"`
+	Domain      *Domain       `json:"domain"`
+	Permissions []*Permission `json:"permissions"`
 }

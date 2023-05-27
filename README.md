@@ -1,6 +1,7 @@
 # User Domain Role Service
 
 The User Domain Role Service provides a centralized and unified place to store and manage user roles across different domains or applications within a corporate environment. It can be used to implement a role-based access control system, where user access to various features, resources, or actions within each domain or application is determined by their assigned roles. This microservice can greatly simplify role management across corporate applications, ensure consistency in role assignments, and enhance security by implementing robust access controls.
+
 ## Architecture
 
 - Go
@@ -10,6 +11,73 @@ The User Domain Role Service provides a centralized and unified place to store a
 - Microservices
 - GORM
 - Gin
+
+## Schema Design
+In GraphQL schema design, we need to define the types and fields that will be exposed to the client applications. The schema also defines the queries and mutations that can be executed against the service. The following schema defines the types and operations supported by the User Domain Role Service:
+
+```
+    type User {
+      id: ID!
+      name: String!
+      email: String!
+      pwdhash: String!
+      role: Role!
+      domain: Domain!
+      permissions: [Permission!]!
+    }
+
+    type Role {
+      id: ID!
+      name: String!
+      description: String!
+      permissions: [Permission!]!
+    }
+
+    type Domain {
+      id: ID!
+      name: String!
+      description: String!
+    }
+
+    type Permission {
+      id: ID!
+      name: String!
+      description: String!
+    }
+
+    type Query {
+      userById(id: ID!): User
+      userByName(name: String!): User
+      userByEmail(email: String): User
+      roles: [Role!]!
+      domains: [Domain!]!
+      permissions: [Permission!]!
+    }
+
+    input NewUser {
+      name: String!
+      email: String!
+      pwdhash: String!
+      role: ID!
+      domain: ID!
+      permissions: [ID!]!
+    }
+
+    input UpdateUser {
+      name: String!
+      email: String!
+      pwdhash: String!
+      role: ID!
+      domain: ID!
+      permissions: [ID!]!
+    }
+
+    type Mutation {
+      createUser(input: NewUser!): User!
+      updateUser(id: ID!, input: UpdateUser!): User!
+      deleteUser(id: ID!): User!
+    }
+```
 ## Implementation
 ### Centralized Role Management
 The microservice acts as a central repository for storing and managing user roles. It can maintain a database or data store that associates users with their roles within different domains or applications.

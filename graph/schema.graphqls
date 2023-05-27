@@ -1,10 +1,61 @@
-
 type User {
   id: ID!
   name: String!
   email: String!
+  pwdhash: String!
+  role: Role!
+  domain: Domain!
+  permissions: [Permission!]!
+}
+
+type Role {
+  id: ID!
+  name: String!
+  description: String!
+  permissions: [Permission!]!
+}
+
+type Domain {
+  id: ID!
+  name: String!
+  description: String!
+}
+
+type Permission {
+  id: ID!
+  name: String!
+  description: String!
 }
 
 type Query {
-  user(id: ID!): User
+  userById(id: ID!): User
+  userByName(name: String!): User
+  userByEmail(email: String): User
+  roles: [Role!]!
+  domains: [Domain!]!
+  permissions: [Permission!]!
+}
+
+input NewUser {
+  name: String!
+  email: String!
+  pwdhash: String!
+  role: ID!
+  domain: ID!
+  permissions: [ID!]!
+}
+
+input UpdateUser {
+  name: String!
+  email: String!
+  pwdhash: String!
+  role: ID!
+  domain: ID!
+  permissions: [ID!]!
+}
+
+type Mutation {
+  createUser(input: NewUser!): User!
+  updateUser(id: ID!, input: UpdateUser!): User!
+  deleteUser(id: ID!): User!
 }

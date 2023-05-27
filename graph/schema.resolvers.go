@@ -8,15 +8,59 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/miguelamello/graph/model"
+	"github.com/miguelamello/user-domain-role-service/graph/model"
 )
 
-// User is the resolver for the user field.
-func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: User - user"))
+// CreateUser is the resolver for the createUser field.
+func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
 }
+
+// UpdateUser is the resolver for the updateUser field.
+func (r *mutationResolver) UpdateUser(ctx context.Context, id string, input model.UpdateUser) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: UpdateUser - updateUser"))
+}
+
+// DeleteUser is the resolver for the deleteUser field.
+func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: DeleteUser - deleteUser"))
+}
+
+// UserByID is the resolver for the userById field.
+func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: UserByID - userById"))
+}
+
+// UserByName is the resolver for the userByName field.
+func (r *queryResolver) UserByName(ctx context.Context, name string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: UserByName - userByName"))
+}
+
+// UserByEmail is the resolver for the userByEmail field.
+func (r *queryResolver) UserByEmail(ctx context.Context, email *string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: UserByEmail - userByEmail"))
+}
+
+// Roles is the resolver for the roles field.
+func (r *queryResolver) Roles(ctx context.Context) ([]*model.Role, error) {
+	panic(fmt.Errorf("not implemented: Roles - roles"))
+}
+
+// Domains is the resolver for the domains field.
+func (r *queryResolver) Domains(ctx context.Context) ([]*model.Domain, error) {
+	panic(fmt.Errorf("not implemented: Domains - domains"))
+}
+
+// Permissions is the resolver for the permissions field.
+func (r *queryResolver) Permissions(ctx context.Context) ([]*model.Permission, error) {
+	panic(fmt.Errorf("not implemented: Permissions - permissions"))
+}
+
+// Mutation returns MutationResolver implementation.
+func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
+type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
