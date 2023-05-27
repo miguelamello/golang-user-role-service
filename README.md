@@ -8,6 +8,8 @@ The User Domain Role Service provides a centralized and unified place to store a
 - MongoDB
 - Redis
 - Microservices
+- GORM
+- Gin
 ## Implementation
 ### Centralized Role Management
 The microservice acts as a central repository for storing and managing user roles. It can maintain a database or data store that associates users with their roles within different domains or applications.
