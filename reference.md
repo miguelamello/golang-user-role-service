@@ -126,7 +126,7 @@ The following methods exists for querying the API:
 5) [domains](#5-domains)
 6) [permissions](#6-permissions)
 
-### 1) creatuserByIdeUser
+### 1) userById
 This query returns a existing user.
 
 #### Example
