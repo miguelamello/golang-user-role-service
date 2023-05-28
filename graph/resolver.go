@@ -1,19 +1,33 @@
 package graph
 
-//go:generate go run github.com/99designs/gqlgen generate
+//xxxxgo:generate go run github.com/99designs/gqlgen generate
 
 // This file will not be regenerated automatically.
 // It serves as dependency injection for your app, add any dependencies you require here.
 
 import (
 	"context"
+	"errors"
+	"strings"
+	"github.com/google/uuid"
 	"github.com/miguelamello/user-domain-role-service/graph/model"
+	"github.com/miguelamello/user-domain-role-service/graph/entities"
 )
 
 type Resolver struct{}
 
 // Implement the CreateUser resolver function
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
+
+	// Verify if name and email are not empty
+	if strings.TrimSpace(input.Name) == "" || strings.TrimSpace(input.Email) == "" {
+		return nil, errors.New("name and email are required fields")
+	}
+
+	// Verify if the email is valid
+	if !validation.ValidateEmailString(input.Email) {
+		return nil, errors.New("email is not valid")
+	}
 
 	// Implement the logic to create a new user
 	// Generate a unique ID for the new user
@@ -24,7 +38,6 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 		ID:    userID,
 		Name:  input.Name,
 		Email: input.Email,
-		// Initialize other fields as needed
 	}
 
 	// Save the new user to the database or perform any other necessary actions
@@ -36,6 +49,11 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 
 // Helper function to generate a unique ID for the user
 func generateUniqueID() string {
-	// Implement your logic to generate a unique ID
-	return "e3ccxaw3hqo894zi1m2xb3j85w98v9dh"
+
+	// Generate a new UUID (version 4)
+	id := uuid.New()
+	// Convert the UUID to a string representation
+	idString := id.String()
+	return idString
+
 }
