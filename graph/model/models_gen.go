@@ -9,12 +9,8 @@ type Domain struct {
 }
 
 type NewUser struct {
-	Name        string   `json:"name"`
-	Email       string   `json:"email"`
-	Pwdhash     string   `json:"pwdhash"`
-	Role        string   `json:"role"`
-	Domain      string   `json:"domain"`
-	Permissions []string `json:"permissions"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
 }
 
 type Permission struct {

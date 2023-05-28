@@ -39,10 +39,6 @@ type Query {
 input NewUser {
   name: String!
   email: String!
-  pwdhash: String!
-  role: ID!
-  domain: ID!
-  permissions: [ID!]!
 }
 
 input UpdateUser {
