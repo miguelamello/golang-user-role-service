@@ -109,3 +109,7 @@ Final step is building a user-friendly web interface or a dashboard that allows 
 
 By providing a centralized User Domain Role Service, we can simplify role management across corporate applications, ensure consistency in role assignments, and enhance security by implementing robust access controls. This microservice can greatly streamline user provisioning, access control, and compliance processes within the organization.
 
+### Microservice Architecture
+
+![Microservice Architecture](
+
