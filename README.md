@@ -75,7 +75,7 @@ In GraphQL schema design, we need to define the types and fields that will be ex
   }
 ```
 
-[API Reference](https://github.com/miguelamello/graphql/blob/main/reference.md)
+[API Reference](https://github.com/miguelamello/user-domain-role-service/blob/main/reference.md)
 ## Implementation
 ### Centralized Role Management
 The microservice acts as a central repository for storing and managing user roles. It can maintain a database or data store that associates users with their roles within different domains or applications.
