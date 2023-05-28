@@ -21,11 +21,6 @@ func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (*model.Us
 	panic(fmt.Errorf("not implemented: DeleteUser - deleteUser"))
 }
 
-// UserByID is the resolver for the userById field.
-func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: UserByID - userById"))
-}
-
 // UserByName is the resolver for the userByName field.
 func (r *queryResolver) UserByName(ctx context.Context, name string) (*model.User, error) {
 	panic(fmt.Errorf("not implemented: UserByName - userByName"))

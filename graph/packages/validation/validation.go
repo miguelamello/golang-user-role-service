@@ -3,7 +3,17 @@ package validation
 import (
 	"regexp"
 	"strings"
+	"github.com/google/uuid"
 )
+
+func VerifyUUID(uuidString string) bool {
+	_, err := uuid.Parse(uuidString)
+	if err != nil {
+		return false
+	} else {
+		return true
+	}
+}
 
 // Verify if the email string is valid
 func isEmail(email string) bool {

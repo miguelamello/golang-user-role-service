@@ -1,31 +1,54 @@
 package graph
 
-//xxxxgo:generate go run github.com/99designs/gqlgen generate
-
-// This file will not be regenerated automatically.
-// It serves as dependency injection for your app, add any dependencies you require here.
-
 import (
 	"context"
 	"errors"
 	"strings"
+
 	"github.com/google/uuid"
 	"github.com/miguelamello/user-domain-role-service/graph/model"
-	"github.com/miguelamello/user-domain-role-service/graph/entities"
+	"github.com/miguelamello/user-domain-role-service/graph/packages/redis"
+	"github.com/miguelamello/user-domain-role-service/graph/packages/validation"
 )
 
 type Resolver struct{}
 
+// Implement the UserById resolver function
+func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, error) {
+
+	// Verify if id is valid
+	if !validation.VerifyUUID(id) {
+		return nil, errors.New("id is not valid")
+	}
+
+	// Get the user from Redis
+	user, err := redis.GetUser(id)
+	if err != nil {
+		return nil, errors.New("user does not exist")
+	}
+
+	return user, nil
+
+}
+
 // Implement the CreateUser resolver function
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
 
+	name := strings.TrimSpace(input.Name)
+	email := strings.TrimSpace(input.Email)
+
 	// Verify if name and email are not empty
-	if strings.TrimSpace(input.Name) == "" || strings.TrimSpace(input.Email) == "" {
-		return nil, errors.New("name and email are required fields")
+	if len(name) == 0 {
+		return nil, errors.New("name is a required field")
+	}
+
+	// Verify if email are not empty
+	if len(email) == 0 {
+		return nil, errors.New("email is a required field")
 	}
 
 	// Verify if the email is valid
-	if !validation.ValidateEmailString(input.Email) {
+	if !validation.ValidateEmailString(email) {
 		return nil, errors.New("email is not valid")
 	}
 
@@ -36,23 +59,29 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	// Create a new user object
 	newUser := &model.User{
 		ID:    userID,
-		Name:  input.Name,
-		Email: input.Email,
+		Name:  name,
+		Email: email,
 	}
 
-	// Save the new user to the database or perform any other necessary actions
+	// Save the new user to Redis
+	success, err := redis.SaveUser(newUser)
+	if err != nil {
+		return nil, errors.New("failed to save user and already reported to team")
+	}
+
+	if !success {
+		return nil, errors.New("failed to save user and already reported to team")
+	}
 
 	// Return the newly created user
 	return newUser, nil
 
 }
 
-// Helper function to generate a unique ID for the user
+// Generate a unique ID for the user
 func generateUniqueID() string {
 
-	// Generate a new UUID (version 4)
 	id := uuid.New()
-	// Convert the UUID to a string representation
 	idString := id.String()
 	return idString
 

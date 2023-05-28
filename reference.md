@@ -126,6 +126,36 @@ The following methods exists for querying the API:
 5) [domains](#5-domains)
 6) [permissions](#6-permissions)
 
+### 1) creatuserByIdeUser
+This query returns a existing user.
+
+#### Example
+
+The request will be:
+
+```
+  query {
+    userById(id:"b8b0c615-aa84-4e5c-bbf7-a53c181acd89") {
+      id
+      name
+      email
+    }
+  }
+```
+The response will be:
+
+```
+  {
+    "data": {
+      "userById": {
+        "id": "b8b0c615-aa84-4e5c-bbf7-a53c181acd89",
+        "name": "Miguel Angelo Mello",
+        "email": "miguelangelomello@gmail.com"
+      }
+    }
+  }
+```
+
 ## Mutation
 The API provides three mutations that you can use to create, update and delete 
 users. The mutations are described below.
