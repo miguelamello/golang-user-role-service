@@ -113,5 +113,8 @@ By providing a centralized User Domain Role Service, we can simplify role manage
 
 ![Microservice Architecture](https://github.com/miguelamello/user-domain-role-service/blob/main/diagram.png)
 
+Clients make requests to the GraphQL Api via HTTP POST protocol. The GraphQL service handle requests and process them by executing the corresponding queries and mutations. The service uses a Redis datastore to 
+cache the results of the queries and mutations. Asyncronously the service updates the MongoDB with related data. The service uses a MongoDB database to store the data permanently. The service uses GORM (Go Object Relational Mapping) to interact with the MongoDB database. The service uses Gin framework to handle the HTTP requests. Everything is written and tied together if Go language, a very fast, typed and compiled language.
+
 
 
