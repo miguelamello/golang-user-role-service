@@ -111,5 +111,7 @@ By providing a centralized User Domain Role Service, we can simplify role manage
 
 ### Microservice Architecture
 
-![Microservice Architecture](
+![Microservice Architecture](https://github.com/miguelamello/user-domain-role-service/blob/main/diagram.png)
+
+
 
