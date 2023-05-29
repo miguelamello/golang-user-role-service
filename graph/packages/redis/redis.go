@@ -4,16 +4,23 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 	"github.com/miguelamello/user-domain-role-service/graph/model"
 )
 
-var ctx = context.Background()
+var (
+	ctx    = context.Background()
+	client *redis.Client
+)
 
 // Initializes the Redis client
 func getClient() (*redis.Client, error) {
 
-	client := redis.NewClient(&redis.Options{
+	if client != nil {
+		return client, nil
+	}
+
+	client = redis.NewClient(&redis.Options{
 		Addr:     "127.0.0.1:6379",
 		Password: "",
 		DB:       0,
@@ -78,6 +85,6 @@ func SaveUser(user *model.User) (bool, error) {
 		return false, err
 	}
 
-	return true, err
+	return true, nil
 
 }
