@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	ctx = context.Background()
+	ctx = context.TODO()
 	clientOptions *options.ClientOptions
 	client *mongo.Client
 	err error
