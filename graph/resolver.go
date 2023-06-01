@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/miguelamello/user-domain-role-service/graph/model"
-	"github.com/miguelamello/user-domain-role-service/graph/packages/redis"
+	"github.com/miguelamello/user-domain-role-service/graph/packages/myredis"
 	"github.com/miguelamello/user-domain-role-service/graph/packages/validation"
 )
 
@@ -22,7 +22,7 @@ func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, e
 	}
 
 	// Get the user from Redis
-	user, err := redis.GetUser(id)
+	user, err := myredis.GetUser(id)
 	if err != nil {
 		return nil, errors.New("user does not exist")
 	}
@@ -64,7 +64,7 @@ func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) 
 	}
 
 	// Save the new user to Redis
-	success, err := redis.SaveUser(newUser)
+	success, err := myredis.SaveUser(newUser)
 	if err != nil {
 		return nil, errors.New("failed to save user and already reported to team")
 	}

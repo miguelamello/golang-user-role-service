@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/miguelamello/user-domain-role-service/graph"
-	"github.com/gin-gonic/gin"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/gin-gonic/gin"
+	"github.com/miguelamello/user-domain-role-service/graph"
 )
 
 // Defining the Graphql handler
@@ -40,4 +40,3 @@ func main() {
 	r.Run()
 
 }
-
