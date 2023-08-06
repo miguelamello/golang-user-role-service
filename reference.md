@@ -12,15 +12,15 @@ compatible.
 ## Servers
 The API is hosted on the following servers:
 
-Production server: `http://udrs.orionsoft.site`<br>
-Development server: `http://localhost:8080/graphql`
+Production server: `http://orionsoft.site/udsr`<br>
+Development server: `http://localhost:8080/udsr/graphql`
 
 ## Endpoints
 Differently from REST APIs, GraphQL APIs have only one endpoint where all the 
 requests are sent. The endpoint for this API is:
 
-Remote endoint: `http://udrs.orionsoft.site`<br>
-Local endpoint: `http://localhost:8080/graphql`
+Remote endoint: `http://orionsoft.site/udsr`<br>
+Local endpoint: `http://localhost:8080/udsr/graphql`
 
 ### Methods
 The API provides only one method: `POST`
