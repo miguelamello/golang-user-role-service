@@ -1,0 +1,28 @@
+#
+# Systemd service configuration file for the udrs service. 
+# Under Unix/Linux servers that use Systemd, it's a great 
+# way to configure the service.
+# 
+# Usage: 
+# systemdctl status udrs
+# systemdctl start udrs
+# systemdctl stop udrs
+# systemdctl restart udrs
+#
+
+[Unit]
+Description=udrs
+
+[Service] 
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user/udrs
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=udrs
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+
