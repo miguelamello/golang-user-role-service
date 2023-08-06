@@ -2,6 +2,12 @@
 
 The User Domain Role Service provides a centralized and unified place to store and manage user roles across different domains or applications within a corporate environment. It can be used to implement a role-based access control system, where user access to various features, resources, or actions within each domain or application is determined by their assigned roles. This microservice can greatly simplify role management across corporate applications, ensure consistency in role assignments, and enhance security by implementing robust access controls.
 
+## API Reference
+
+Take a look at the API Reference to understand it's usage. 
+
+[API Reference](https://github.com/miguelamello/user-domain-role-service/blob/main/reference.md)
+
 ## Architecture
 
 - Go
@@ -75,7 +81,6 @@ In GraphQL schema design, we need to define the types and fields that will be ex
   }
 ```
 
-[API Reference](https://github.com/miguelamello/user-domain-role-service/blob/main/reference.md)
 ## Implementation
 ### Centralized Role Management
 The microservice acts as a central repository for storing and managing user roles. It can maintain a database or data store that associates users with their roles within different domains or applications.
