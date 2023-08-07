@@ -35,6 +35,8 @@ func main() {
 
 	// Setting up Gin
 	r := gin.Default()
+
+	// API routes
 	r.POST("/udrs/v1/query", graphqlHandler())
 	r.GET("/udrs/v1", playgroundHandler())
 	r.Run("localhost:8080")
