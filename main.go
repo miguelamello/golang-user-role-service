@@ -37,6 +37,6 @@ func main() {
 	r := gin.Default()
 	r.POST("/udrs/query", graphqlHandler())
 	r.GET("/udrs", playgroundHandler())
-	r.Run()
+	r.Run("localhost:8080")
 
 }
