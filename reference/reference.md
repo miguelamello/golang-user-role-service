@@ -21,76 +21,50 @@
   }
 </style>
 
-# API Reference for User Domain Role Service
+# User Domain Role Service GraphQL API Reference
 
-## 1) Description
+Version 1
+
+
+## 1) Introduction
 This API reference provides information about the functionality of the User Domain Role Service GraphQL API. The User Domain Role Service can provide a centralized and unified place to store and manage user roles across different domains or applications within a corporate environment. The API provides functionality described below.
 
-## 2) Version
-Current API Version is: `v1`
 
-
-## 3) Servers
-The API is hosted on the following servers:
-
-```
-  Production server: http://orionsoft.site/udsr/v1/query
-  Development server: http://localhost:8080/udsr/query
-```
-
-## 4) Endpoints
-Differently from REST APIs, GraphQL APIs have only one endpoint where all the 
-requests are sent using POST. The endpoint for this API is:
-
-```
-  Production endpoint: http://orionsoft.site/udsr/v1/query
-  Development endpoint: http://localhost:8080/udsr/v1/query
-```
-
-### 4.1) Methods
-The API provides only one method: `POST`
-
-### 4.2) Headers
-The API requires the following headers:
-
-`Content-Type: application/json`
-
-### 4.3) Request Body
- The request body is required and must be a valid GraphQL query. 
-
-#### 4.3.1) Example
-
-The request will be:
-
-```
-  query {
-    userById(id:"b8b0c615-aa84-4e5c-bbf7-a53c181acd89") {
-      id
-      name
-      email
-    }
-  }
-```
-
-#### 4.3.1) For development:
-We recommend you to use a GraphQL desktop client to query the API. Usually, the desktop client will provide a GraphQL body to query the API.
-
-Obs: You may want to access the GraphQL playground via browser at:
-
-```
-  Production endpoint: http://orionsoft.site/udsr/v1/playground
-  Development endpoint: http://localhost:8080/udsr/v1/playground
-```
-
-The playground will provide a graphical interface to query the API. While the playground is funny and good to get used to GraphQL idiom, it is not recommended to use it in production.
-
-#### 4.3.2) For production:
-We recommend you to use a GraphQL client module suitable to your programing language and production environment to query the API.
-
-## 5) Authentication
+## 2) Authentication
 No authentication is required to use this API, yet it may be required in the future.
 
-## 6) Schema
+
+## 3) Routes
+The following routes are available:
+
+```
+  Query endpoint:       http://orionsoft.site/udsr/v1/query
+  Playground endpoint:  http://orionsoft.site/udsr/v1/playground
+  Reference endpoint:   http://orionsoft.site/udsr/v1
+```
+
+### 3.1) Query endpoint
+The query endpoint is used to query the API. The query endpoint is the only endpoint that you will use in production. When querying the API, keep in mind the following:
+
+```
+  1) The query endpoint is a POST endpoint.
+  2) The query endpoint requires a valid GraphQL query in the request body.
+  3) The query endpoint requires the following headers: Content-Type: application/json
+```
+
+### 3.2) Playground endpoint
+The playground endpoint is used to query the API from a web browser. The playground endpoint is a GET endpoint that provides a graphical interface to query the API. The playground endpoint is not recommended to be used in production. When querying the API, keep in mind the following:
+
+```
+  1) The playground endpoint is a GET endpoint.
+  2) The playground endpoint requires a valid GraphQL query in the request body.
+```
+
+### 3.3) Reference endpoint
+The reference endpoint is used to get information about the API. All the information you need to use the API is provided in this document. 
+
+
+## 4) Schema
 The API provides the schema described below. The schema is used to query the API and to get the data you want. Continue reading to learn how to use the schema.
 
 ```
@@ -153,24 +127,24 @@ The API provides the schema described below. The schema is used to query the API
   }
 ```
 
-## 7) Querying
+## 5) Querying
 The beauty of GraphQL is that you can query the API to get the data you want. Look at the schema above and you will see that the API provides seven queries that you can use to get the data you want.
 
 The following methods exists for querying the API:
 
 ```
-  7.1) userById     //Returns a existing user by its Id.
-  7.2) userByName   //Returns a existing user by its Name.
-  7.3) userByEmail  //Returns a existing user by its Email.
-  7.4) roles        //Returns all existing roles
-  7.5) domains      //Returns all existing domains
-  7.6) permissions  //Returns all existing permissions
+  5.1) userById     //Returns a existing user by its Id.
+  5.2) userByName   //Returns a existing user by its Name.
+  5.3) userByEmail  //Returns a existing user by its Email.
+  5.4) roles        //Returns all existing roles
+  5.5) domains      //Returns all existing domains
+  5.6) permissions  //Returns all existing permissions
 ```
 
-### 7.1) userById
+### 5.1) userById
 Returns a existing user by its Id.
 
-#### 7.1.1) Example
+#### 5.1.1) Example
 
 The request will be:
 
@@ -197,20 +171,20 @@ The response will be:
   }
 ```
 
-## 8) Mutation
+## 6) Mutation
 The API provides three mutations that you can use to create, update and delete 
 users. The mutations are described below.
 
 ```
-  8.1) createUser   //Creates a new user
-  8.2) updateUser   //Updates an existing user
-  8.3) deleteUser   //Deletes an existing user
+  6.1) createUser   //Creates a new user
+  6.2) updateUser   //Updates an existing user
+  6.3) deleteUser   //Deletes an existing user
 ```
 
-### 8.1) createUser
+### 6.1) createUser
 This mutation creates a new user.
 
-#### 8.1.1) Example
+#### 6.1.1) Example
 
 The request will be:
 
@@ -241,4 +215,15 @@ The response will be:
 ```
 
 to be continued...
+
+
+## 7) Rate Limiting
+The API imposes a rate limit of 100 requests per minute per user. If the rate limit is exceeded, a `429 Too Many Requests` response will be returned.
+
+
+## 8) Change Log
+v1 (2023-07-16): &nbsp;Initial release of the API.
+
+## 9) Support and Contact Information
+For any questions or issues, please contact Miguel Mello at miguelangelomello@gmail.com.
 
