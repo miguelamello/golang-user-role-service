@@ -22,7 +22,7 @@ func getClient() (*mongo.Client, error) {
 	}
 	
 	// Set client options
-	clientOptions = options.Client().ApplyURI("mongodb://localhost:27017/?connect=direct")
+	clientOptions = options.Client().ApplyURI("mongodb://127.0.0.1:27017/?directConnection=true")
 
 	// Connect to MongoDB
 	client, err = mongo.Connect(ctx, clientOptions)
