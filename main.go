@@ -68,9 +68,9 @@ func main() {
 	r := gin.Default()
 
 	// API routes
-	r.GET("/udrs/v1", referenceHandler())
-	r.GET("/udrs/v1/playground", playgroundHandler())
-	r.POST("/udrs/v1/query", graphqlHandler())
+	r.GET("/", referenceHandler())
+	r.GET("/playground", playgroundHandler())
+	r.POST("/query", graphqlHandler())
 	
 	r.Run("localhost:8080")
 
