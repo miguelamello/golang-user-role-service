@@ -6,7 +6,7 @@ The User Domain Role Service provides a centralized and unified place to store a
 
 Take a look at the API Reference to understand it's usage. 
 
-[API Reference](http://orionsoft.site/udrs/v1)
+[API Reference](http://udrs.orionsoft.site)
 
 ## Architecture
 

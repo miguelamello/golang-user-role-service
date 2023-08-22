@@ -38,9 +38,9 @@ No authentication is required to use this API, yet it may be required in the fut
 The following routes are available:
 
 ```
-  Query endpoint:       http://orionsoft.site/udrs/v1/query
-  Playground endpoint:  http://orionsoft.site/udrs/v1/playground
-  Reference endpoint:   http://orionsoft.site/udrs/v1
+  Query endpoint:       http://udrs.orionsoft.site/query
+  Playground endpoint:  http://udrs.orionsoft.site/playground
+  Reference endpoint:   http://udrs.orionsoft.site/
 ```
 
 ### 3.1) Query endpoint
